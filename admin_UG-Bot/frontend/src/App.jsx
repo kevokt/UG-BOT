@@ -6,6 +6,8 @@ import {
 } from "@/components/ui/color-mode";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -14,6 +16,14 @@ function App() {
         <Box minHeight={"100vh"} bg={useColorModeValue("gray.200", "gray.800")}>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Box>
       </BrowserRouter>

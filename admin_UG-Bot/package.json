@@ -2,9 +2,8 @@
   "name": "admin_ug-bot",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon backend/server.js"
+    "dev": "cross-env NODE_ENV=development nodemon backend/index.js"
   },
   "keywords": [],
   "author": "",

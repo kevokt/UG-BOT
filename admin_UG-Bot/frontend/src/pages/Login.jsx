@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -18,11 +20,34 @@ import { ColorModeButton, useColorModeValue } from "@/components/ui/color-mode";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
+  // Registering a new user
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:3000/register", { username, password })
+  //     .then((result) => {
+  //       console.log(result);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  // Login a new user
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Username:", username, "Password:", password);
+    axios
+      .post("http://localhost:3000/login", { username, password })
+      .then((result) => {
+        console.log(result);
+        if (result.data.status === "Success") {
+          localStorage.setItem("token", result.data.token);
+          navigate("/");
+        }
+      })
+      .catch((err) => console.log(err));
   };
+
   return (
     <>
       <Flex
