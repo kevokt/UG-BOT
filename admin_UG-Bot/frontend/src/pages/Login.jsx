@@ -16,6 +16,7 @@ import {
   Fieldset,
 } from "@chakra-ui/react";
 import { ColorModeButton, useColorModeValue } from "@/components/ui/color-mode";
+import { Toaster, toaster } from "@/components/ui/toaster";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -36,6 +37,9 @@ const Login = () => {
   // Login a new user
   const handleSubmit = (e) => {
     e.preventDefault();
+    // toaster.create({
+    //   title: "Toast Title",
+    // });
     axios
       .post("http://localhost:3000/api/auth/login", { username, password })
       .then((result) => {
@@ -45,7 +49,13 @@ const Login = () => {
           navigate("/");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toaster.create({
+          title: err.response.data,
+          type: "error",
+        });
+      });
   };
 
   return (
@@ -98,6 +108,9 @@ const Login = () => {
                     type="submit"
                     variant={useColorModeValue("surface", "solid")}
                     colorPalette={"purple"}
+                    // onClick={toaster.create({
+                    //   title: "Toast Title",
+                    // })}
                   >
                     Login
                   </Button>
