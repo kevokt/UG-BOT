@@ -4,12 +4,12 @@ import AdminSidebarNav from "@/components/AdminNav/AdminSidebarNav";
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 
-const AdminDashboard = () => {
+const AdminNews = () => {
   const [data, setData] = useState([]);
 
   return (
     <HStack>
-      <AdminSidebarNav inDashboard={true} />
+      <AdminSidebarNav inNews={true} />
       <Box
         marginLeft={{ base: "4", md: "300px" }}
         marginTop={{ base: "100px", md: "40px" }}
@@ -21,11 +21,11 @@ const AdminDashboard = () => {
           fontWeight={"bolder"}
           marginTop={{ base: "0px", md: "50px" }}
         >
-          Selamat datang di Admin Dashboard
+          Selamat datang di Admin News
         </Text>
       </Box>
     </HStack>
   );
 };
 
-export default AdminDashboard;
+export default AdminNews;

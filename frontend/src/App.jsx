@@ -10,6 +10,9 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 import Home from "./pages/client/Home";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import { Toaster, toaster } from "@/components/ui/toaster";
+import AdminNews from "./pages/admin/AdminNews";
+import AdminReport from "./pages/admin/AdminReport";
+import AdminRegistration from "./pages/admin/AdminRegistration";
 
 function App() {
   return (
@@ -24,6 +27,30 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/news"
+              element={
+                <ProtectedRoute>
+                  <AdminNews />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/report"
+              element={
+                <ProtectedRoute>
+                  <AdminReport />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/registration"
+              element={
+                <ProtectedRoute>
+                  <AdminRegistration />
                 </ProtectedRoute>
               }
             />

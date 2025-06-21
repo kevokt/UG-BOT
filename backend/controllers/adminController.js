@@ -8,7 +8,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 export const login = async (req, res) => {
     const { username, password } = req.body;
-
+    console.log(SECRET_KEY);
     try {
         const user = await AdminModel.findOne({ username });
         if (!user) return res.status(400).json("User not found");

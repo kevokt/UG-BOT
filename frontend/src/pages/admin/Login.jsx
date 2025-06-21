@@ -42,7 +42,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await axios.post("http://localhost:3000/api/auth/login", {
+      const result = await axios.post("/api/auth/login", {
         username,
         password,
       });
@@ -79,6 +79,7 @@ const Login = () => {
                 fontSize={"4xl"}
                 textAlign={"center"}
                 fontWeight={"bold"}
+                fontFamily="'Exo', sans-serif"
               >
                 UG-Bot Admin Login
               </Fieldset.Legend>
@@ -114,9 +115,6 @@ const Login = () => {
                     type="submit"
                     variant={useColorModeValue("surface", "solid")}
                     colorPalette={"purple"}
-                    // onClick={toaster.create({
-                    //   title: "Toast Title",
-                    // })}
                   >
                     Login
                   </Button>

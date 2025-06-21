@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+dotenv.config();
 
 import authRoutes from './routes/authRoutes.js';
-
-dotenv.config();
+import botpressRoutes from './routes/botpressRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +20,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use("/api/botpress", botpressRoutes);
 
 // Start server
 app.listen(PORT, () => {
