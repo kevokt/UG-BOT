@@ -27,9 +27,13 @@ const Login = () => {
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   axios
-  //     .post("http://localhost:3000/register", { username, password })
+  //     .post("http://localhost:3000/api/auth/register", { username, password })
   //     .then((result) => {
   //       console.log(result);
+  //       toaster.create({
+  //         title: "Registration Successful!",
+  //         type: "success",
+  //       });
   //     })
   //     .catch((err) => console.log(err));
   // };
@@ -46,6 +50,10 @@ const Login = () => {
         console.log(result);
         if (result.data.status === "Success") {
           localStorage.setItem("token", result.data.token);
+          toaster.create({
+            title: "Login Successful!",
+            type: "success",
+          });
           navigate("/");
         }
       })
