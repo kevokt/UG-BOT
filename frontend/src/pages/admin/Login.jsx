@@ -39,31 +39,29 @@ const Login = () => {
   // };
 
   // Login a new user
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // toaster.create({
-    //   title: "Toast Title",
-    // });
-    axios
-      .post("http://localhost:3000/api/auth/login", { username, password })
-      .then((result) => {
-        console.log(result);
-        if (result.data.status === "Success") {
-          localStorage.setItem("token", result.data.token);
-          toaster.create({
-            title: "Login Successful!",
-            type: "success",
-          });
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        toaster.create({
-          title: err.response.data,
-          type: "error",
-        });
+    try {
+      const result = await axios.post("http://localhost:3000/api/auth/login", {
+        username,
+        password,
       });
+
+      if (result.data.status === "Success") {
+        localStorage.setItem("token", result.data.token);
+        toaster.create({
+          title: "Login Successful!",
+          type: "success",
+        });
+        navigate("/admin");
+      }
+    } catch (err) {
+      console.log(err);
+      toaster.create({
+        title: err.response?.data || "Login failed",
+        type: "error",
+      });
+    }
   };
 
   return (

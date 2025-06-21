@@ -13,7 +13,7 @@ export const login = async (req, res) => {
         const user = await AdminModel.findOne({ username });
         if (!user) return res.status(400).json("User not found");
 
-        const isMatch = bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json("Incorrect password");
 
         const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: "1h" });
