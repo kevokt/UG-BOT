@@ -1,5 +1,8 @@
 // components/AdminDialog/AdminRegistrationDetail.jsx
 import { Dialog, Portal, Button, CloseButton, Box } from "@chakra-ui/react";
+import { RiMailLine, RiWhatsappFill } from "react-icons/ri";
+import { MdOutlineMail } from "react-icons/md";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 const AdminRegistrationDetail = ({ item }) => {
   if (!item) return null;
@@ -7,7 +10,11 @@ const AdminRegistrationDetail = ({ item }) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <Button size="sm" variant="outline">
+        <Button
+          size="sm"
+          variant={useColorModeValue("surface", "surface")}
+          colorPalette={"gray"}
+        >
           Detail
         </Button>
       </Dialog.Trigger>
@@ -58,7 +65,7 @@ const AdminRegistrationDetail = ({ item }) => {
                 </p>
                 <p>
                   <strong>Email Terkirim:</strong>{" "}
-                  {item.isEmailSent ? "Ya" : "Belum"}
+                  {item.isEmailSent ? "Sudah" : "Belum"}
                 </p>
                 <p>
                   <strong>Created At:</strong>{" "}
@@ -71,10 +78,44 @@ const AdminRegistrationDetail = ({ item }) => {
               </Box>
             </Dialog.Body>
             <Dialog.Footer>
-              <Dialog.ActionTrigger asChild>
-                <Button variant="outline">Cancel</Button>
-              </Dialog.ActionTrigger>
-              <Button>Ubah Status Email</Button>
+              Contact Options:
+              <Button
+                variant="solid"
+                as={"a"}
+                target={"_blank"}
+                colorPalette={"green"}
+                rel="noopener noreferrer"
+                href={`https://wa.me/${item.nohp}`}
+              >
+                <RiWhatsappFill /> Whatsapp
+              </Button>
+              <Button
+                variant="solid"
+                as="a"
+                target="_blank"
+                colorPalette={
+                  item.jalurPendaftaran.trim() === "Jalur Rapor"
+                    ? "green"
+                    : "blue"
+                }
+                rel="noopener noreferrer"
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${
+                  item.email
+                }&su=${encodeURIComponent(
+                  `Konfirmasi Verifikasi ${item.jalurPendaftaran.trim()}`
+                )}&body=${encodeURIComponent(
+                  `Halo ${item.nama.trim()},\n\n${
+                    item.jalurPendaftaran.trim() === "Jalur Rapor"
+                      ? `Selamat! Data Anda untuk Jalur Rapor telah berhasil kami verifikasi.\n\nBiaya pendaftaran akan segera kami kirimkan ke rekening XXX XXX XXX.`
+                      : `Data Anda untuk Jalur UTBK telah berhasil kami verifikasi.\n\nBiaya pendaftaran akan segera kami kirimkan ke rekening XXX XXX XXX.`
+                  }\n\nApabila ada pertanyaan lebih lanjut, silakan hubungi tim kami.\n\nSalam,\nTim Penerimaan UG-Bot`
+                )}`}
+              >
+                <RiMailLine />{" "}
+                {item.jalurPendaftaran.trim() === "Jalur Rapor"
+                  ? "Email (Rapor)"
+                  : "Email (UTBK)"}
+              </Button>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
               <CloseButton size="sm" />

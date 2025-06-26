@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Hero from "@/components/misc/Hero";
+import ClientNav from "@/components/ClientNavbar/ClientNav";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <ClientNav active="home" />
+      <Hero />
+    </>
+  );
+};
 
-export default Home
+export default Home;

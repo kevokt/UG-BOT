@@ -6,31 +6,28 @@ import { ColorModeButton, useColorModeValue } from "../ui/color-mode";
 import { toaster } from "../ui/toaster";
 import AdminDrawerNav from "./AdminDrawerNav";
 import Logo from "../misc/Logo";
+import { adminNavItems } from "./adminNavItems";
 
-const AdminSidebarNav = ({ inDashboard, inNews, inReport, inRegistration }) => {
+const AdminSidebarNav = ({ active }) => {
   const bgColor = useColorModeValue("gray.50", "gray.800");
   const hoverBg = useColorModeValue("purple.300", "purple.800");
   const fontColor = useColorModeValue("black", "whiteAlpha.900");
   const navigate = useNavigate();
 
   const navItems = [
-    { to: "/admin", label: "Dashboard", isActive: inDashboard },
-    { to: "/admin/news", label: "Kelola Berita", isActive: inNews },
-    {
-      to: "/admin/report",
-      label: "Kelola Laporan",
-      isActive: inReport,
-    },
+    { to: "/admin", label: "Dashboard", name: "dashboard" },
+    { to: "/admin/news", label: "Kelola Berita", name: "news" },
+    { to: "/admin/report", label: "Kelola Laporan", name: "report" },
     {
       to: "/admin/registration",
       label: "Kelola Pendaftaran",
-      isActive: inRegistration,
+      name: "registration",
     },
   ];
 
   return (
     <>
-      <AdminDrawerNav inDashboard={inDashboard} />
+      <AdminDrawerNav active={active} />
       <Box
         position="fixed"
         left="0"
@@ -40,30 +37,34 @@ const AdminSidebarNav = ({ inDashboard, inNews, inReport, inRegistration }) => {
         bg={bgColor}
         shadow="md"
         p={5}
-        display={{ base: "none", md: "block" }} // Hanya tampil di desktop
+        display={{ base: "none", md: "block" }}
       >
         <Flex direction="column" justify="space-between" h="100%">
-          {/* Logo dan menu navigasi */}
           <Box>
             <Flex justify="center" align="center" w="full" mb={10} mt={3}>
               <Logo />
             </Flex>
+            <VStack spacing={4}>
+              {adminNavItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Button
+                    key={item.to}
+                    as={RouterLink}
+                    to={item.to}
+                    w="200px"
+                    variant={active === item.name ? "surface" : "ghost"}
+                    colorPalette="purple"
+                    justifyContent="flex-start"
+                    gap={4}
+                    _hover={{ bg: hoverBg }}
+                  >
+                    <Icon />
+                    {item.label}
+                  </Button>
+                );
+              })}
 
-            <VStack align="center" spacing={4}>
-              {navItems.map((item) => (
-                <Button
-                  key={item.to}
-                  as={RouterLink}
-                  to={item.to}
-                  w="200px"
-                  variant={item.isActive ? "surface" : "ghost"}
-                  colorPalette="purple"
-                  justifyContent="center"
-                  _hover={{ bg: hoverBg }}
-                >
-                  {item.label}
-                </Button>
-              ))}
               <Button
                 w="200px"
                 variant="ghost"
@@ -85,8 +86,6 @@ const AdminSidebarNav = ({ inDashboard, inNews, inReport, inRegistration }) => {
               </Button>
             </VStack>
           </Box>
-
-          {/* Color mode button di bawah */}
           <Box display="flex" justifyContent="flex-end">
             <ColorModeButton />
           </Box>

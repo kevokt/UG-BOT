@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import AdminSidebarNav from "@/components/AdminNav/AdminSidebarNav";
+import AdminSidebarNav from "@/components/AdminNavbar/AdminSidebarNav";
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 
@@ -9,7 +9,7 @@ const AdminReport = () => {
 
   return (
     <HStack>
-      <AdminSidebarNav inReport={true} />
+      <AdminSidebarNav active={"report"} />
       <Box
         marginLeft={{ base: "4", md: "300px" }}
         marginTop={{ base: "100px", md: "40px" }}

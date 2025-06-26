@@ -13,6 +13,7 @@ import { Toaster, toaster } from "@/components/ui/toaster";
 import AdminNews from "./pages/admin/AdminNews";
 import AdminReport from "./pages/admin/AdminReport";
 import AdminRegistration from "./pages/admin/AdminRegistration";
+import AdminRegistrationEdit from "./pages/admin/AdminRegistraionEdit";
 
 function App() {
   return (
@@ -51,6 +52,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AdminRegistration />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/registration/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <AdminRegistrationEdit />
                 </ProtectedRoute>
               }
             />

@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import AdminSidebarNav from "@/components/AdminNav/AdminSidebarNav";
-import { Box, HStack, Text, Table, Spinner, Button } from "@chakra-ui/react";
+import AdminSidebarNav from "@/components/AdminNavbar/AdminSidebarNav";
+import {
+  Box,
+  HStack,
+  VStack,
+  Text,
+  Table,
+  Spinner,
+  Button,
+} from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import AdminRegistrationDetail from "./AdminRegistrationDetail";
+import { useNavigate } from "react-router-dom";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 const AdminRegistration = () => {
   const [data, setData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -27,34 +38,67 @@ const AdminRegistration = () => {
   }, []);
 
   const handleToggleEmailStatus = async (item) => {
-    try {
-      await axios.put(`/api/botpress/registrations/toggle/${item.id}`);
-
-      // Refresh data
-      fetchData();
-
-      toaster.create({
-        title: `Status email berhasil diubah!`,
-        type: "success",
+    const promise = axios
+      .put(`/api/botpress/registrations/toggle/${item.id}`)
+      .then(() => {
+        fetchData(); // Refresh data setelah berhasil
       });
-    } catch (error) {
-      console.error("Gagal update status email:", error);
-      toaster.create({
-        title: "Gagal mengubah status email!",
-        type: "error",
+
+    toaster.promise(promise, {
+      loading: {
+        title: "Mengubah status email...",
+        description: "Silakan tunggu",
+      },
+      success: {
+        title: "Berhasil!",
+        description: "Status email berhasil diubah",
+      },
+      error: {
+        title: "Gagal!",
+        description: "Tidak dapat mengubah status email",
+      },
+    });
+  };
+
+  const handleDelete = async (id) => {
+    const confirm = window.confirm(
+      "Apakah kamu yakin ingin menghapus data ini?"
+    );
+    if (!confirm) return;
+
+    const promise = axios
+      .post(`/api/botpress/registrations/delete/${id}`)
+      .then(() => {
+        fetchData(); // Refresh data setelah delete berhasil
       });
-    }
+
+    toaster.promise(promise, {
+      loading: {
+        title: "Menghapus data...",
+        description: "Sedang menghapus data dari server",
+      },
+      success: {
+        title: "Berhasil!",
+        description: "Data berhasil dihapus",
+      },
+      error: {
+        title: "Gagal!",
+        description: "Tidak dapat menghapus data",
+      },
+    });
   };
 
   return (
     <HStack align="start">
-      <AdminSidebarNav inRegistration={true} />
+      <AdminSidebarNav active={"registration"} />
       <Box
         flex="1"
         p={4}
         ml={{ base: "4", md: "300px" }}
         mt={{ base: "100px", md: "40px" }}
+        mx={{ base: "4", "2xl": "auto" }}
         overflowX="auto"
+        maxWidth={{ base: "100%", xl: "1000px" }}
       >
         <Text
           as="h2"
@@ -63,16 +107,21 @@ const AdminRegistration = () => {
           fontWeight="bold"
           mt={{ base: "0px", md: "50px" }}
         >
-          Selamat datang di Admin Pendaftaran
+          Data Pendaftaran
         </Text>
 
         {data.length === 0 ? (
-          <Box textAlign="center" mt={10}>
-            <Spinner size="lg" color="purple.500" />
-          </Box>
+          <VStack textAlign="center" mt={10}>
+            <Spinner
+              size="md"
+              color="purple.500"
+              css={{ "--spinner-track-color": "colors.gray.200" }}
+            />
+            <Text color={"purple.500"}>Loading...</Text>
+          </VStack>
         ) : (
           <Box mt={10}>
-            <Table.Root size="sm">
+            <Table.Root size="md" striped>
               <Table.Header>
                 <Table.Row>
                   <Table.ColumnHeader>Nama</Table.ColumnHeader>
@@ -92,19 +141,43 @@ const AdminRegistration = () => {
                     <Table.Cell>{item.jurusan2}</Table.Cell>
                     <Table.Cell>{item.jalurPendaftaran}</Table.Cell>
                     <Table.Cell>{item.region}</Table.Cell>
-                    <Table.Cell>
+                    <Table.Cell color={item.isEmailSent ? "green" : "red"}>
                       {item.isEmailSent ? "Sudah Dikirim" : "Belum Dikirim"}
                     </Table.Cell>
                     <Table.Cell>
                       <HStack spacing={2}>
-                        <AdminRegistrationDetail item={item} />
+                        <AdminRegistrationDetail
+                          key={item.updatedAt}
+                          item={item}
+                        />
                         <Button
                           size="sm"
-                          colorScheme={item.isEmailSent ? "yellow" : "green"}
-                          variant="solid"
+                          colorPalette={item.isEmailSent ? "yellow" : "green"}
+                          variant={useColorModeValue("solid", "surface")}
+                          width="80px"
                           onClick={() => handleToggleEmailStatus(item)}
                         >
-                          {item.isEmailSent ? "Batalkan" : "Tandai Terkirim"}
+                          {item.isEmailSent ? "Batalkan" : "Terkirim"}
+                        </Button>
+                        <Button
+                          size="sm"
+                          colorPalette="blue"
+                          variant={useColorModeValue("solid", "surface")}
+                          width="80px"
+                          onClick={() =>
+                            navigate(`/admin/registration/edit/${item.id}`)
+                          }
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          size="sm"
+                          colorPalette="red"
+                          variant={useColorModeValue("solid", "surface")}
+                          width="80px"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          Delete
                         </Button>
                       </HStack>
                     </Table.Cell>

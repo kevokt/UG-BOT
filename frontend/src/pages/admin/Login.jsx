@@ -14,9 +14,11 @@ import {
   Icon,
   useBreakpointValue,
   Fieldset,
+  VStack,
 } from "@chakra-ui/react";
 import { ColorModeButton, useColorModeValue } from "@/components/ui/color-mode";
 import { Toaster, toaster } from "@/components/ui/toaster";
+import Logo from "@/components/misc/Logo";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -81,7 +83,17 @@ const Login = () => {
                 fontWeight={"bold"}
                 fontFamily="'Exo', sans-serif"
               >
-                UG-Bot Admin Login
+                <VStack gap={"3"}>
+                  <Logo />
+                  <Text
+                    fontSize={"4xl"}
+                    textAlign={"center"}
+                    fontWeight={"bold"}
+                    fontFamily="'Exo', sans-serif"
+                  >
+                    Admin Login
+                  </Text>
+                </VStack>
               </Fieldset.Legend>
 
               <Box
