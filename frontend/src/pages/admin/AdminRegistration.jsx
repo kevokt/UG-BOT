@@ -94,22 +94,25 @@ const AdminRegistration = () => {
       <Box
         flex="1"
         p={4}
-        ml={{ base: "4", md: "300px" }}
+        ml={{ base: "unset", md: "300px" }}
         mt={{ base: "100px", md: "40px" }}
         mx={{ base: "4", "2xl": "auto" }}
+        mr={{ base: "8", md: "12" }}
         overflowX="auto"
         maxWidth={{ base: "100%", xl: "1000px" }}
+        rounded={"lg"}
       >
-        <Text
-          as="h2"
-          textAlign="center"
-          fontSize="3xl"
-          fontWeight="bold"
-          mt={{ base: "0px", md: "50px" }}
-        >
-          Data Pendaftaran
-        </Text>
-
+        <Box position="sticky" left="0" zIndex="1">
+          <Text
+            as="h2"
+            textAlign="center"
+            fontSize="3xl"
+            fontWeight="bold"
+            mt={{ base: "0px", md: "50px" }}
+          >
+            Data Pendaftaran
+          </Text>
+        </Box>
         {data.length === 0 ? (
           <VStack textAlign="center" mt={10}>
             <Spinner
