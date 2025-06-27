@@ -90,14 +90,13 @@ const AdminRegistration = () => {
 
   return (
     <HStack align="start">
-      <AdminSidebarNav active={"registration"} />
       <Box
         flex="1"
         p={4}
         ml={{ base: "unset", md: "300px" }}
         mt={{ base: "100px", md: "40px" }}
         mx={{ base: "4", "2xl": "auto" }}
-        mr={{ base: "8", md: "12" }}
+        mr={{ base: "8", md: "60px" }}
         overflowX="auto"
         maxWidth={{ base: "100%", xl: "1000px" }}
         rounded={"lg"}

@@ -14,6 +14,11 @@ import AdminNews from "./pages/admin/AdminNews";
 import AdminReport from "./pages/admin/AdminReport";
 import AdminRegistration from "./pages/admin/AdminRegistration";
 import AdminRegistrationEdit from "./pages/admin/AdminRegistraionEdit";
+import News from "./pages/client/News";
+import Report from "./pages/client/Report";
+import Chat from "./pages/client/Chat";
+import AdminLayout from "./layouts/AdminLayout";
+import ClientLayout from "./layouts/ClientLayout";
 
 function App() {
   return (
@@ -21,48 +26,34 @@ function App() {
       <BrowserRouter>
         <Box minHeight={"100vh"} bg={useColorModeValue("gray.200", "gray.800")}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* Client Layout */}
+            <Route element={<ClientLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/report" element={<Report />} />
+              <Route path="/chat" element={<Chat />} />
+            </Route>
+
             <Route path="/login" element={<Login />} />
+
+            {/* Admin Layout with Protected Route */}
             <Route
               path="/admin"
               element={
                 <ProtectedRoute>
-                  <AdminDashboard />
+                  <AdminLayout />
                 </ProtectedRoute>
               }
-            />
-            <Route
-              path="/admin/news"
-              element={
-                <ProtectedRoute>
-                  <AdminNews />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/report"
-              element={
-                <ProtectedRoute>
-                  <AdminReport />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/registration"
-              element={
-                <ProtectedRoute>
-                  <AdminRegistration />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/registration/edit/:id"
-              element={
-                <ProtectedRoute>
-                  <AdminRegistrationEdit />
-                </ProtectedRoute>
-              }
-            />
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="news" element={<AdminNews />} />
+              <Route path="report" element={<AdminReport />} />
+              <Route path="registration" element={<AdminRegistration />} />
+              <Route
+                path="registration/edit/:id"
+                element={<AdminRegistrationEdit />}
+              />
+            </Route>
           </Routes>
           <Toaster />
         </Box>

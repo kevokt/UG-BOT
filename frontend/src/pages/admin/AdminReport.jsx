@@ -9,7 +9,6 @@ const AdminReport = () => {
 
   return (
     <HStack>
-      <AdminSidebarNav active={"report"} />
       <Box
         marginLeft={{ base: "4", md: "300px" }}
         marginTop={{ base: "100px", md: "40px" }}

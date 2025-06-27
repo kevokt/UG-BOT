@@ -7,6 +7,7 @@ import { toaster } from "../ui/toaster";
 import AdminDrawerNav from "./AdminDrawerNav";
 import Logo from "../misc/Logo";
 import { adminNavItems } from "./adminNavItems";
+import { NavLink } from "react-router-dom";
 
 const AdminSidebarNav = ({ active }) => {
   const bgColor = useColorModeValue("gray.50", "gray.800");
@@ -45,25 +46,29 @@ const AdminSidebarNav = ({ active }) => {
               <Logo />
             </Flex>
             <VStack spacing={4}>
-              {adminNavItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Button
-                    key={item.to}
-                    as={RouterLink}
-                    to={item.to}
-                    w="200px"
-                    variant={active === item.name ? "surface" : "ghost"}
-                    colorPalette="purple"
-                    justifyContent="flex-start"
-                    gap={4}
-                    _hover={{ bg: hoverBg }}
-                  >
-                    <Icon />
-                    {item.label}
-                  </Button>
-                );
-              })}
+              {adminNavItems.map(({ to, label, icon: Icon }) => (
+                <NavLink
+                  to={to}
+                  key={to}
+                  end
+                  style={{ textDecoration: "none" }}
+                >
+                  {({ isActive }) => (
+                    <Button
+                      w="200px"
+                      variant={isActive ? "surface" : "ghost"}
+                      colorPalette="purple"
+                      justifyContent="flex-start"
+                      gap={4}
+                      _hover={{ bg: hoverBg }}
+                      fontSize="sm"
+                    >
+                      <Icon />
+                      {label}
+                    </Button>
+                  )}
+                </NavLink>
+              ))}
 
               <Button
                 w="200px"

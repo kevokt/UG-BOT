@@ -69,7 +69,6 @@ const AdminRegistrationEdit = () => {
 
   return (
     <HStack>
-      <AdminSidebarNav active={"registration"} />
       <Box
         marginLeft={{ base: "8px", md: "250px" }}
         marginTop={{ base: "100px", md: "0px" }}

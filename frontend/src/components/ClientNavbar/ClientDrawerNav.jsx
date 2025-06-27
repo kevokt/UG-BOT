@@ -15,6 +15,7 @@ import { FaPaw } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import Logo from "@/components/misc/Logo";
 import { clientNavItems } from "./ClientNavItems";
+import { NavLink } from "react-router-dom";
 
 const ClientDrawerNav = ({ active }) => {
   const fontColor = useColorModeValue("black", "whiteAlpha.900");
@@ -41,28 +42,29 @@ const ClientDrawerNav = ({ active }) => {
 
               <Drawer.Body>
                 <VStack>
-                  {clientNavItems.map(({ to, label, key, isGhost }) => (
-                    <Link to={to} key={label}>
-                      <Button
-                        className="nav-button"
-                        rounded="full"
-                        colorPalette="purple"
-                        variant={
-                          isGhost
-                            ? "ghost"
-                            : active === key
-                            ? "surface"
-                            : "ghost"
-                        }
-                        fontSize="sm"
-                        color={fontColor}
-                        _hover={{
-                          bg: useColorModeValue("purple.300", "purple.800"),
-                        }}
-                      >
-                        <span>{label}</span>
-                      </Button>
-                    </Link>
+                  {clientNavItems.map(({ to, label }) => (
+                    <NavLink
+                      to={to}
+                      key={label}
+                      end
+                      style={{ textDecoration: "none" }}
+                    >
+                      {({ isActive }) => (
+                        <Button
+                          className="nav-button"
+                          rounded="full"
+                          colorPalette="purple"
+                          variant={isActive ? "surface" : "ghost"}
+                          fontSize="sm"
+                          color={fontColor}
+                          _hover={{
+                            bg: useColorModeValue("purple.300", "purple.800"),
+                          }}
+                        >
+                          <span>{label}</span>
+                        </Button>
+                      )}
+                    </NavLink>
                   ))}
                 </VStack>
               </Drawer.Body>

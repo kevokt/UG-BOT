@@ -15,6 +15,7 @@ import { FiLogOut } from "react-icons/fi";
 import { toaster } from "../ui/toaster";
 import Logo from "../misc/Logo";
 import { adminNavItems } from "./adminNavItems";
+import { NavLink } from "react-router-dom";
 
 const AdminDrawerNav = ({ active }) => {
   const fontColor = useColorModeValue("black", "whiteAlpha.900");
@@ -60,31 +61,30 @@ const AdminDrawerNav = ({ active }) => {
 
               <Drawer.Body>
                 <VStack spacing={3}>
-                  {adminNavItems.map(({ to, label, name, icon: Icon }) => (
-                    <Box
-                      key={to}
-                      as={Link}
+                  {adminNavItems.map(({ to, label, icon: Icon }) => (
+                    <NavLink
                       to={to}
-                      display="flex"
-                      justifyContent="center"
-                      w="full"
+                      key={to}
+                      end
+                      style={{ textDecoration: "none" }}
                     >
-                      <Button
-                        w={{ base: "full", sm: "300px" }}
-                        mx={{ base: "unset", sm: "auto" }}
-                        gap={2}
-                        rounded="full"
-                        colorPalette="purple"
-                        variant={active === name ? "surface" : "ghost"}
-                        fontSize="sm"
-                        _hover={{ bg: hoverBg }}
-                      >
-                        <Icon />
-                        {label}
-                      </Button>
-                    </Box>
+                      {({ isActive }) => (
+                        <Button
+                          w={{ base: "full", sm: "300px" }}
+                          mx={{ base: "unset", sm: "auto" }}
+                          gap={2}
+                          rounded="full"
+                          colorPalette="purple"
+                          variant={isActive ? "surface" : "ghost"}
+                          fontSize="sm"
+                          _hover={{ bg: hoverBg }}
+                        >
+                          <Icon />
+                          {label}
+                        </Button>
+                      )}
+                    </NavLink>
                   ))}
-
                   <Box display="flex" justifyContent="center" w="full">
                     <Button
                       w={{ base: "full", sm: "300px" }}
@@ -93,7 +93,7 @@ const AdminDrawerNav = ({ active }) => {
                       fontSize="sm"
                       colorPalette="red"
                       rounded="full"
-                      variant="surface"
+                      variant="ghost"
                       _hover={{ bg: useColorModeValue("red.300", "red.800") }}
                       onClick={handleLogout}
                     >

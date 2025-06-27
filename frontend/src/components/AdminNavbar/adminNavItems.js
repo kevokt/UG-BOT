@@ -1,4 +1,5 @@
-import { FaChartBar, FaNewspaper, FaUser } from "react-icons/fa";
+import { FaChartBar, FaUser } from "react-icons/fa";
+import { FaNewspaper } from "react-icons/fa6";
 import { GoReport } from "react-icons/go";
 
 

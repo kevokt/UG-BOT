@@ -6,10 +6,10 @@ import { ColorModeButton, useColorModeValue } from "../ui/color-mode";
 import ClientDrawerNav from "./ClientDrawerNav";
 import { clientNavItems } from "./ClientNavItems";
 import Logo from "@/components/misc/Logo";
+import { NavLink } from "react-router-dom"; // ⬅️ import this
 
 const ClientNav = ({ active }) => {
   const fontColor = useColorModeValue("black", "whiteAlpha.900");
-  console.log("ClientNav active:", active);
 
   return (
     <Box
@@ -25,22 +25,22 @@ const ClientNav = ({ active }) => {
 
         <HStack gap={2} display={{ base: "none", md: "flex" }}>
           <ColorModeButton />
-          {clientNavItems.map(({ to, label, key, isGhost }) => (
-            <Link to={to} key={label}>
-              <Button
-                className="nav-button"
-                rounded={"full"}
-                colorPalette={"purple"}
-                variant={
-                  isGhost ? "ghost" : active === key ? "surface" : "ghost"
-                }
-                fontSize={"sm"}
-                color={fontColor}
-                _hover={{ bg: useColorModeValue("purple.300", "purple.800") }}
-              >
-                <span>{label}</span>
-              </Button>
-            </Link>
+          {clientNavItems.map(({ to, label }) => (
+            <NavLink to={to} key={label} end style={{ textDecoration: "none" }}>
+              {({ isActive }) => (
+                <Button
+                  className="nav-button"
+                  rounded={"full"}
+                  colorPalette={"purple"}
+                  variant={isActive ? "surface" : "ghost"}
+                  fontSize={"sm"}
+                  color={fontColor}
+                  _hover={{ bg: useColorModeValue("purple.300", "purple.800") }}
+                >
+                  <span>{label}</span>
+                </Button>
+              )}
+            </NavLink>
           ))}
         </HStack>
 

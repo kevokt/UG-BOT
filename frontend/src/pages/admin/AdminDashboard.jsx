@@ -9,7 +9,6 @@ const AdminDashboard = () => {
 
   return (
     <HStack>
-      <AdminSidebarNav active={"dashboard"} />
       <Box
         marginLeft={{ base: "4", md: "300px" }}
         marginTop={{ base: "100px", md: "40px" }}

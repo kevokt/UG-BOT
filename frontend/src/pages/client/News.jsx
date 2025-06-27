@@ -1,13 +1,12 @@
 import React from "react";
-import Hero from "@/components/misc/Hero";
 import ClientNav from "@/components/ClientNavbar/ClientNav";
 
-const Home = () => {
+const News = () => {
   return (
     <>
-      <Hero />
+      <div>News</div>
     </>
   );
 };
 
-export default Home;
+export default News;
