@@ -19,6 +19,7 @@ import Report from "./pages/client/Report";
 import Chat from "./pages/client/Chat";
 import AdminLayout from "./layouts/AdminLayout";
 import ClientLayout from "./layouts/ClientLayout";
+import AdminNewsCreate from "./pages/admin/AdminNewsCreate";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             >
               <Route index element={<AdminDashboard />} />
               <Route path="news" element={<AdminNews />} />
+              <Route path="news/create" element={<AdminNewsCreate />} />
               <Route path="report" element={<AdminReport />} />
               <Route path="registration" element={<AdminRegistration />} />
               <Route
