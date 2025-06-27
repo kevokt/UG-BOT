@@ -8,6 +8,7 @@ import AdminDrawerNav from "./AdminDrawerNav";
 import Logo from "../misc/Logo";
 import { adminNavItems } from "./adminNavItems";
 import { NavLink } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
 const AdminSidebarNav = ({ active }) => {
   const bgColor = useColorModeValue("gray.50", "gray.800");
@@ -50,7 +51,7 @@ const AdminSidebarNav = ({ active }) => {
                 <NavLink
                   to={to}
                   key={to}
-                  end
+                  end={to === "/admin"}
                   style={{ textDecoration: "none" }}
                 >
                   {({ isActive }) => (
@@ -74,8 +75,10 @@ const AdminSidebarNav = ({ active }) => {
                 w="200px"
                 variant="ghost"
                 colorPalette="red"
-                justifyContent="center"
+                justifyContent="flex-start"
                 _hover={{ bg: useColorModeValue("red.300", "red.700") }}
+                gap={4}
+                fontSize="sm"
                 onClick={() => {
                   if (window.confirm("Apakah anda yakin ingin keluar?")) {
                     localStorage.removeItem("token");
@@ -87,6 +90,7 @@ const AdminSidebarNav = ({ active }) => {
                   }
                 }}
               >
+                <FiLogOut />
                 Logout
               </Button>
             </VStack>

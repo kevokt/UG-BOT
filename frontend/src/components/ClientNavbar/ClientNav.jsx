@@ -23,20 +23,22 @@ const ClientNav = ({ active }) => {
           <Logo />
         </Flex>
 
-        <HStack gap={2} display={{ base: "none", md: "flex" }}>
+        <HStack gap={0} display={{ base: "none", md: "flex" }}>
           <ColorModeButton />
-          {clientNavItems.map(({ to, label }) => (
-            <NavLink to={to} key={label} end style={{ textDecoration: "none" }}>
+          {clientNavItems.map(({ to, label, icon: Icon }) => (
+            <NavLink to={to} key={label} style={{ textDecoration: "none" }}>
               {({ isActive }) => (
                 <Button
                   className="nav-button"
                   rounded={"full"}
+                  width={"100px"}
                   colorPalette={"purple"}
                   variant={isActive ? "surface" : "ghost"}
                   fontSize={"sm"}
                   color={fontColor}
                   _hover={{ bg: useColorModeValue("purple.300", "purple.800") }}
                 >
+                  <Icon />
                   <span>{label}</span>
                 </Button>
               )}
