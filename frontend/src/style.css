@@ -3,3 +3,21 @@
 * {
     font-family: "Nunito", sans-serif;
 }
+
+.ql-toolbar {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border: 1px solid #E2E8F0;
+    border-bottom: none;
+}
+
+.ql-container {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border: 1px solid #E2E8F0;
+}
+
+.ql-editor {
+    min-height: 200px;
+    border-radius: 0;
+}

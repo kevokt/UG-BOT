@@ -106,27 +106,7 @@ const AdminNewsCreate = () => {
                   </Field.Root>
 
                   <Controller
-                    name="content"
-                    control={control}
-                    render={({ field }) => (
-                      <Field.Root>
-                        <Field.Label>Isi Berita</Field.Label>
-                        <ReactQuill
-                          theme="snow"
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          style={{
-                            height: "200px",
-                            width: "100%",
-                            marginBottom: "45px",
-                          }}
-                        />
-                      </Field.Root>
-                    )}
-                  />
-
-                  <Controller
+                    marginTop="45px"
                     name="isPublished"
                     control={control}
                     render={({ field }) => (
@@ -147,6 +127,27 @@ const AdminNewsCreate = () => {
                       </Field.Root>
                     )}
                   />
+
+                  <Controller
+                    name="content"
+                    control={control}
+                    render={({ field }) => (
+                      <Field.Root>
+                        <Field.Label>Isi Berita</Field.Label>
+                        <ReactQuill
+                          theme="snow"
+                          value={field.value}
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
+                          style={{
+                            height: "100px",
+                            width: "100%",
+                            marginBottom: "45px",
+                          }}
+                        />
+                      </Field.Root>
+                    )}
+                  />
                 </Fieldset.Content>
 
                 <Button
@@ -156,6 +157,11 @@ const AdminNewsCreate = () => {
                   alignSelf="flex-start"
                   mt={4}
                   variant={useColorModeValue("solid", "surface")}
+                  marginTop={{
+                    base: "80px",
+                    sm: "60px",
+                    md: "45px",
+                  }}
                 >
                   Create News
                 </Button>
