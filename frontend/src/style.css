@@ -20,4 +20,33 @@
 .ql-editor {
     min-height: 200px;
     border-radius: 0;
+
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+em,
+i {
+    font-style: italic;
 }

@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   HStack,
@@ -20,14 +20,16 @@ import { useColorModeValue } from "@/components/ui/color-mode";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 
-const AdminNewsCreate = () => {
+const AdminNewsEdit = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
     control,
     reset,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = useForm({
     defaultValues: {
       title: "",
@@ -37,9 +39,42 @@ const AdminNewsCreate = () => {
     },
   });
 
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await axios.get(`/api/news/${id}`);
+        reset(res.data.news);
+      } catch (error) {
+        console.error("Gagal memuat data berita:", error);
+        toaster.create({
+          title: "Gagal memuat data berita",
+          type: "error",
+        });
+      }
+    };
+
+    fetchNews();
+  }, [id, reset]);
+
   const onSubmit = async (data) => {
-    console.log("Data yang akan dikirim:", data);
-    // Implement API logic here
+    try {
+      const response = await axios.put(`/api/news/${id}`, data);
+
+      if (response.data?.news) {
+        toaster.create({
+          title: "Berita berhasil diperbarui!",
+          type: "success",
+        });
+
+        navigate("/admin/news");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      toaster.create({
+        title: err.response?.data?.message || "Gagal memperbarui berita",
+        type: "error",
+      });
+    }
   };
 
   return (
@@ -59,7 +94,7 @@ const AdminNewsCreate = () => {
           fontWeight="bolder"
           mt={{ base: "0px", md: "50px" }}
         >
-          Create Data Berita
+          Update Data Berita
         </Text>
 
         <Center>
@@ -85,7 +120,7 @@ const AdminNewsCreate = () => {
             >
               <Fieldset.Root size="lg" w="100%">
                 <Stack align="center">
-                  <Fieldset.Legend>Formulir Berita</Fieldset.Legend>
+                  <Fieldset.Legend>Formulir Update Berita</Fieldset.Legend>
                 </Stack>
 
                 <Fieldset.Content>
@@ -93,7 +128,7 @@ const AdminNewsCreate = () => {
                     <Field.Label>Judul Berita</Field.Label>
                     <Input
                       {...register("title")}
-                      placeholder={"Masukkan Judul Berita"}
+                      placeholder="Masukkan Judul Berita"
                     />
                   </Field.Root>
 
@@ -101,12 +136,11 @@ const AdminNewsCreate = () => {
                     <Field.Label>Author</Field.Label>
                     <Input
                       {...register("author")}
-                      placeholder={"Masukkan Author"}
+                      placeholder="Masukkan Author"
                     />
                   </Field.Root>
 
                   <Controller
-                    marginTop="45px"
                     name="isPublished"
                     control={control}
                     render={({ field }) => (
@@ -115,7 +149,7 @@ const AdminNewsCreate = () => {
                         <Switch.Root
                           name={field.name}
                           checked={field.value}
-                          colorPalette={"purple"}
+                          colorPalette="purple"
                           onCheckedChange={({ checked }) =>
                             field.onChange(checked)
                           }
@@ -139,11 +173,7 @@ const AdminNewsCreate = () => {
                           value={field.value}
                           onChange={field.onChange}
                           onBlur={field.onBlur}
-                          style={{
-                            height: "100px",
-                            width: "100%",
-                            marginBottom: "45px",
-                          }}
+                          style={{ width: "100%" }}
                         />
                       </Field.Root>
                     )}
@@ -157,13 +187,8 @@ const AdminNewsCreate = () => {
                   alignSelf="flex-start"
                   mt={4}
                   variant={useColorModeValue("solid", "surface")}
-                  marginTop={{
-                    base: "80px",
-                    sm: "60px",
-                    md: "45px",
-                  }}
                 >
-                  Create News
+                  Update News
                 </Button>
               </Fieldset.Root>
             </Box>
@@ -174,4 +199,4 @@ const AdminNewsCreate = () => {
   );
 };
 
-export default AdminNewsCreate;
+export default AdminNewsEdit;

@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   if (!token || isTokenExpired(token)) {
     localStorage.removeItem("token");
     toaster.create({
-      title: "Session Expired. Silahkan login terlebih dahulu",
+      title: "Sesi Anda telah berakhir atau belum dimulai. Silakan login terlebih dahulu",
       type: "warning",
     });
     return <Navigate to="/login" />;

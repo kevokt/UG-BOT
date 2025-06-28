@@ -1,7 +1,6 @@
 import client from "../botpressClient.js";
 
 export const getRegistrationRows = async (req, res) => {
-    console.log("getRegistrationRows is Triggered");
     try {
         const result = await client.findTableRows({
             table: 'registrationTable',
@@ -26,9 +25,6 @@ export const getRegistrationRows = async (req, res) => {
 
 export const toggleEmailStatus = async (req, res) => {
     const { id } = req.params;
-
-    console.log("toggleEmailStatus is Triggered");
-
     try {
         // Ambil row berdasarkan ID
         const result = await client.findTableRows({
@@ -72,8 +68,6 @@ export const toggleEmailStatus = async (req, res) => {
 // Get single registration by ID
 export const getRegistrationById = async (req, res) => {
     const { id } = req.params;
-    console.log(`getRegistrationById triggered for id: ${id}`);
-
     try {
         const result = await client.findTableRows({
             table: "registrationTable",
@@ -99,10 +93,7 @@ export const getRegistrationById = async (req, res) => {
 // Update registration by ID
 export const updateRegistrationById = async (req, res) => {
     const { id } = req.params;
-    const data = req.body;
-
-    console.log(`updateRegistrationById triggered for id: ${id}`);
-
+    const data = req.body;;
     try {
         const result = await client.findTableRows({
             table: "registrationTable",
@@ -138,9 +129,6 @@ export const updateRegistrationById = async (req, res) => {
 // delete registration by ID
 export const deleteRegistrationById = async (req, res) => {
     const { id } = req.params;
-
-    console.log(`deleteRegistrationById triggered for id: ${id}`);
-
     try {
         const result = await client.deleteTableRows({
             table: "registrationTable",

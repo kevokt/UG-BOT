@@ -17,8 +17,8 @@ import { useColorModeValue } from "@/components/ui/color-mode";
 
 const AdminRegistration = () => {
   const [data, setData] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
   const navigate = useNavigate();
+  const variantButton = useColorModeValue("solid", "surface");
 
   const fetchData = async () => {
     try {
@@ -155,7 +155,7 @@ const AdminRegistration = () => {
                         <Button
                           size="sm"
                           colorPalette={item.isEmailSent ? "yellow" : "green"}
-                          variant={useColorModeValue("solid", "surface")}
+                          variant={variantButton}
                           width="80px"
                           onClick={() => handleToggleEmailStatus(item)}
                         >
@@ -164,7 +164,7 @@ const AdminRegistration = () => {
                         <Button
                           size="sm"
                           colorPalette="blue"
-                          variant={useColorModeValue("solid", "surface")}
+                          variant={variantButton}
                           width="80px"
                           onClick={() =>
                             navigate(`/admin/registration/edit/${item.id}`)
@@ -175,7 +175,7 @@ const AdminRegistration = () => {
                         <Button
                           size="sm"
                           colorPalette="red"
-                          variant={useColorModeValue("solid", "surface")}
+                          variant={variantButton}
                           width="80px"
                           onClick={() => handleDelete(item.id)}
                         >

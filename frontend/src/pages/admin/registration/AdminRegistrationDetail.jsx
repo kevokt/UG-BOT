@@ -1,4 +1,3 @@
-// components/AdminDialog/AdminRegistrationDetail.jsx
 import { Dialog, Portal, Button, CloseButton, Box } from "@chakra-ui/react";
 import { RiMailLine, RiWhatsappFill } from "react-icons/ri";
 import { MdOutlineMail } from "react-icons/md";
