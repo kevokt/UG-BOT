@@ -6,7 +6,12 @@ const Logo = () => {
   return (
     <Flex align="center" gap={2} color="purple.500">
       <RiRobot2Line size="24px" />
-      <Text fontSize="xl" fontWeight="extrabold" fontFamily="'Exo', sans-serif">
+      <Text
+        fontSize="xl"
+        fontWeight="extrabold"
+        fontFamily="'Exo', sans-serif"
+        mt={1}
+      >
         UG-Bot
       </Text>
     </Flex>

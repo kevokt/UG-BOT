@@ -107,13 +107,37 @@ export const deleteNews = async (req, res) => {
 
 export const getPublishedNews = async (req, res) => {
     try {
-        const news = await News.find({ isPublished: true }).sort({ createdAt: -1 });
-        res.status(200).json({ status: "Success", news });
+        // Ambil query ?page=1&limit=5 (default: page 1, limit 5)
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 5;
+        const skip = (page - 1) * limit;
+
+
+
+        // Hitung total berita yang dipublish
+        const totalPublished = await News.countDocuments({ isPublished: true });
+
+        // Ambil data berita dengan pagination
+        const news = await News.find({ isPublished: true })
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const totalItems = await News.countDocuments({ isPublished: true });
+        const totalPages = Math.ceil(totalItems / limit);
+
+        res.status(200).json({
+            status: "Success",
+            currentPage: parseInt(page),
+            totalPages,
+            totalItems,
+            news,
+        });
     } catch (error) {
         console.error("Error fetching published news:", error);
         res.status(500).json({ message: "Gagal mengambil berita yang dipublikasikan" });
     }
-}
+};
 
 export const getLatestNews = async (req, res) => {
     try {
