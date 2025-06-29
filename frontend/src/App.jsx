@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Box minHeight={"100vh"} bg={useColorModeValue("gray.200", "gray.800")}>
+        <Box minHeight={"100vh"} bg={useColorModeValue("gray.200", "gray.900")}>
           <Routes>
             {/* Client Layout */}
             <Route element={<ClientLayout />}>

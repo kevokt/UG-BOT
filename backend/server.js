@@ -7,6 +7,7 @@ dotenv.config();
 import authRoutes from './routes/authRoutes.js';
 import botpressRoutes from './routes/botpressRoutes.js';
 import newsRoutes from "./routes/newsRoutes.js";
+import reportRoutes from "./routes/reportRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,8 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/auth', authRoutes);
 app.use("/api/botpress", botpressRoutes);
 app.use("/api/news", newsRoutes);
+app.use("/api/report", reportRoutes);
+
 
 // Start server
 app.listen(PORT, () => {

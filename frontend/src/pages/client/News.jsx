@@ -16,7 +16,6 @@ import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import NewsDetail from "@/components/clientcomponents/NewsDetail";
 
 const stripHtml = (html) => {
-  const cardBg = useColorModeValue("white", "gray.700");
   const temp = document.createElement("div");
   temp.innerHTML = html;
   const allowedTags = ["P", "SPAN", "DIV", "STRONG", "EM", "B", "I"];
@@ -41,7 +40,7 @@ const truncateText = (text, limit = 150) => {
 };
 
 const News = () => {
-  const cardBg = useColorModeValue("white", "gray.900");
+  const cardBg = useColorModeValue("white", "blackAlpha.400");
   const [newsList, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -70,7 +69,7 @@ const News = () => {
   }, []);
 
   return (
-    <>
+    <Box minH={"80vh"}>
       <Text
         as="h2"
         textAlign="center"
@@ -164,7 +163,7 @@ const News = () => {
           </Pagination.Root>
         </Box>
       )}
-    </>
+    </Box>
   );
 };
 

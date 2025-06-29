@@ -8,11 +8,12 @@ import {
 } from "@chakra-ui/react";
 import { useColorModeValue } from "../ui/color-mode";
 import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.bubble.css"; // gunakan 'bubble' agar tampak seperti artikel
+import "react-quill-new/dist/quill.bubble.css";
 
 const NewsDetail = ({ item }) => {
   if (!item) return null;
   const textColor = useColorModeValue("black", "white");
+  const bgColor = useColorModeValue("gray.100", "gray.800");
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -27,7 +28,7 @@ const NewsDetail = ({ item }) => {
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content maxW="3xl">
+          <Dialog.Content maxW="3xl" bg={bgColor}>
             <Dialog.Header justifyContent={"center"}>
               <Dialog.Title>{item.title}</Dialog.Title>
             </Dialog.Header>
@@ -60,7 +61,7 @@ const NewsDetail = ({ item }) => {
                   overflow: "hidden",
                   fontSize: "md",
                   lineHeight: "1.8",
-                  p: 0, // padding bisa langsung dikontrol di dalam quill bubble
+                  p: 0,
                 }}
               >
                 <ReactQuill
