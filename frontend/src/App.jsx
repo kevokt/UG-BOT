@@ -11,7 +11,7 @@ import Home from "./pages/client/Home";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import AdminNews from "./pages/admin/news/AdminNews";
-import AdminReport from "./pages/admin/AdminReport";
+import AdminReport from "./pages/admin/report/AdminReport";
 import AdminRegistration from "./pages/admin/registration/AdminRegistration";
 import AdminRegistrationEdit from "./pages/admin/registration/AdminRegistraionEdit";
 import News from "./pages/client/News";
@@ -21,6 +21,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import ClientLayout from "./layouts/ClientLayout";
 import AdminNewsCreate from "./pages/admin/news/AdminNewsCreate";
 import AdminNewsEdit from "./pages/admin/news/AdminNewsEdit";
+import ChatRegistration from "./pages/client/ChatRegistration";
+import ChatKnowledge from "./pages/client/ChatKnowledge";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/report" element={<Report />} />
               <Route path="/chat" element={<Chat />} />
+              <Route path="/chat/knowledge" element={<ChatKnowledge />} />
+              <Route path="/chat/registration" element={<ChatRegistration />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

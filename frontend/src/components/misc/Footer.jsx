@@ -20,7 +20,6 @@ export default function SmallCentered() {
     <Box
       bg={useColorModeValue("gray.50", "gray.800")}
       color={useColorModeValue("gray.800", "gray.400")}
-      mt={20}
       boxShadow={"lg"}
       id="footer"
     >

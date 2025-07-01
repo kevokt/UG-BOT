@@ -85,7 +85,7 @@ const Report = () => {
 
   return (
     <HStack>
-      <Box mx="auto" maxWidth="1200px" width="98vw" minH="80vh">
+      <Box mx="auto" maxWidth="1200px" width="98vw" minH="80vh" mb={12}>
         <Text
           as="h2"
           textAlign="center"
@@ -101,7 +101,7 @@ const Report = () => {
             <Box
               as="form"
               onSubmit={handleSubmit(onSubmit)}
-              bg={useColorModeValue("gray.100", "blackAlpha.300")}
+              bg={useColorModeValue("gray.100", "gray.700")}
               p={8}
               rounded="2xl"
               shadow="2xl"

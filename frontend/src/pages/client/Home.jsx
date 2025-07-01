@@ -1,11 +1,12 @@
 import React from "react";
 import Hero from "@/components/misc/Hero";
-import ClientNav from "@/components/ClientNavbar/ClientNav";
+import NewsLatest from "@/components/clientcomponents/NewsLatest";
 
 const Home = () => {
   return (
     <>
       <Hero />
+      <NewsLatest />
     </>
   );
 };

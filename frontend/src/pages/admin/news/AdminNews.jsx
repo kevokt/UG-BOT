@@ -18,8 +18,8 @@ const AdminNews = () => {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const variantButton = useColorModeValue("solid", "surface");
+
   const fetchNews = async () => {
     try {
       const response = await axios.get("/api/news");
@@ -52,6 +52,16 @@ const AdminNews = () => {
     });
   };
 
+  const handleToggleStatus = async (id) => {
+    const promise = axios.put(`/api/news/toggle/${id}`).then(() => fetchNews());
+
+    toaster.promise(promise, {
+      loading: { title: "Mengubah status berita..." },
+      success: { title: "Status berita berhasil diubah" },
+      error: { title: "Gagal mengubah status berita" },
+    });
+  };
+
   return (
     <HStack align="start">
       <Box
@@ -65,39 +75,46 @@ const AdminNews = () => {
         maxWidth={{ base: "100%", xl: "1000px" }}
         rounded={"lg"}
       >
-        <Text
-          as="h2"
-          textAlign="center"
-          fontSize="3xl"
-          fontWeight="bold"
-          mt={{ base: "0px", md: "50px" }}
-        >
-          Data Berita
-        </Text>
-
-        <Box my={6} textAlign="right">
-          <Button
-            colorPalette="green"
-            onClick={() => navigate("/admin/news/create")}
+        <Box position="sticky" left="0" zIndex="1">
+          <Text
+            as="h2"
+            textAlign="center"
+            fontSize="3xl"
+            fontWeight="bold"
+            mt={{ base: "0px", md: "50px" }}
           >
-            Tambah Berita
-          </Button>
+            Data Berita
+          </Text>
+          <Box my={6} textAlign="right">
+            <Button
+              colorPalette="green"
+              variant={variantButton}
+              width="120px"
+              onClick={() => navigate("/admin/news/create")}
+            >
+              Tambah Berita
+            </Button>
+          </Box>
         </Box>
 
         {loading ? (
           <VStack textAlign="center" mt={10}>
-            <Spinner size="md" color="purple.500" />
+            <Spinner
+              size="md"
+              color="purple.500"
+              css={{ "--spinner-track-color": "colors.gray.200" }}
+            />
             <Text color="purple.500">Loading...</Text>
           </VStack>
         ) : (
-          <Box mt={4}>
-            <Table.Root size="md" striped>
+          <Box mt={10}>
+            <Table.Root size="sm" striped>
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeader>Judul</Table.ColumnHeader>
-                  <Table.ColumnHeader>Penulis</Table.ColumnHeader>
-                  <Table.ColumnHeader>Status</Table.ColumnHeader>
-                  <Table.ColumnHeader>Aksi</Table.ColumnHeader>
+                  <Table.ColumnHeader width="20%">Judul</Table.ColumnHeader>
+                  <Table.ColumnHeader width="20%">Penulis</Table.ColumnHeader>
+                  <Table.ColumnHeader width="20%">Status</Table.ColumnHeader>
+                  <Table.ColumnHeader width="40%">Aksi</Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -115,6 +132,7 @@ const AdminNews = () => {
                           size="sm"
                           colorPalette="blue"
                           variant={variantButton}
+                          width="80px"
                           onClick={() =>
                             navigate(`/admin/news/edit/${item._id}`)
                           }
@@ -123,8 +141,18 @@ const AdminNews = () => {
                         </Button>
                         <Button
                           size="sm"
+                          colorPalette={item.isPublished ? "yellow" : "green"}
+                          variant={variantButton}
+                          width="100px"
+                          onClick={() => handleToggleStatus(item._id)}
+                        >
+                          {item.isPublished ? "Batalkan" : "Terbitkan"}
+                        </Button>
+                        <Button
+                          size="sm"
                           colorPalette="red"
                           variant={variantButton}
+                          width="80px"
                           onClick={() => handleDelete(item._id)}
                         >
                           Delete

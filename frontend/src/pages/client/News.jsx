@@ -120,7 +120,7 @@ const News = () => {
       </Stack>
 
       {totalItems > limit && (
-        <Box mt={8} display="flex" justifyContent="center">
+        <Box mt={8} mb={12} display="flex" justifyContent="center">
           <Pagination.Root
             count={totalItems}
             pageSize={limit}

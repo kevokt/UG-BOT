@@ -1,14 +1,22 @@
 import { Outlet } from "react-router-dom";
-import ClientNav from "@/components/ClientNavbar/ClientNav"; // your client navbar
-import Footer from "@/components/misc/Footer"
+import { Box, Flex } from "@chakra-ui/react";
+import ClientNav from "@/components/ClientNavbar/ClientNav";
+import Footer from "@/components/misc/Footer";
 
 const ClientLayout = () => {
   return (
-    <>
+    <Flex direction="column" minH="100vh">
+      {/* Navbar */}
       <ClientNav />
-      <Outlet />
+
+      {/* Konten utama */}
+      <Box flex="1">
+        <Outlet />
+      </Box>
+
+      {/* Footer */}
       <Footer />
-    </>
+    </Flex>
   );
 };
 

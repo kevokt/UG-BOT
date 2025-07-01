@@ -11,6 +11,12 @@ const reportSchema = new mongoose.Schema(
             required: true,
         },
         pesan: { type: String, required: true },
+        website: { type: String, default: "" }, // Honeypot field untuk anti-spam
+        status: {
+            type: String,
+            enum: ["pending", "in_progress", "resolved"],
+            default: "pending",
+        }
     },
     { timestamps: true }
 );

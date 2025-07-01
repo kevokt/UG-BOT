@@ -58,15 +58,6 @@ const AdminNewsDetail = ({ item }) => {
                 </p>
               </Box>
             </Dialog.Body>
-            <Dialog.Footer>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => window.open(`/news/${item.slug}`, "_blank")}
-              >
-                Lihat di Website
-              </Button>
-            </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
               <CloseButton size="sm" />
             </Dialog.CloseTrigger>

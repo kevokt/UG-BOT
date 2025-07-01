@@ -85,6 +85,31 @@ export const updateNews = async (req, res) => {
     }
 };
 
+
+export const toggleNewsStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const news = await News.findById(id);
+        if (!news) {
+            return res.status(404).json({ message: "Berita tidak ditemukan." });
+        }
+
+        // Toggle status isPublished
+        news.isPublished = !news.isPublished;
+        await news.save();
+
+        res.status(200).json({
+            message: `Status publikasi berhasil diubah menjadi ${news.isPublished ? "Published" : "Draft"}.`,
+            news,
+        });
+    } catch (error) {
+        console.error("Error toggling status:", error);
+        res.status(500).json({ message: "Gagal mengubah status publikasi." });
+    }
+};
+
+
 export const deleteNews = async (req, res) => {
     try {
         const { id } = req.params;
@@ -141,7 +166,7 @@ export const getPublishedNews = async (req, res) => {
 
 export const getLatestNews = async (req, res) => {
     try {
-        const news = await News.find({ isPublished: true }).sort({ createdAt: -1 }).limit(5);
+        const news = await News.find({ isPublished: true }).sort({ createdAt: -1 }).limit(3);
         res.status(200).json({ status: "Success", news });
     } catch (error) {
         console.error("Error fetching latest news:", error);

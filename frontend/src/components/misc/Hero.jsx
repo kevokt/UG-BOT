@@ -6,6 +6,7 @@ import {
   Button,
   Text,
   VStack,
+  Container,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
@@ -19,9 +20,7 @@ const Hero = () => {
       <Flex
         w={"full"}
         h={"100%"}
-        backgroundImage={
-          "url(https://images.unsplash.com/photo-1581887936036-3f4f7f0b6679?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"
-        }
+        backgroundImage={"url('/welcome-image.png')"}
         backgroundSize={"cover"}
         backgroundPosition={"center center"}
         position="relative"
@@ -37,49 +36,52 @@ const Hero = () => {
           zIndex={0}
         />
 
-        {/* Konten */}
-        <VStack
-          w={"full"}
-          justify={"center"}
-          px={useBreakpointValue({ base: 4, md: 8 })}
-          position="relative"
-          zIndex={1}
-        >
-          <Stack maxW={"2xl"} align={"center"} spacing={6}>
-            <Text
-              color={"white"}
-              fontWeight={700}
-              lineHeight={1.2}
-              fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
-              mb={8}
-              textAlign={"center"}
+        <Container maxW="6xl" h="100%" position="relative" zIndex={1}>
+          <Flex
+            direction="column"
+            h="100%"
+            justify="center"
+            align={{ base: "center", md: "flex-end" }}
+            textAlign={{ base: "center", md: "right" }}
+            py={{ base: 8, md: 16 }}
+          >
+            <Stack
+              maxW="2xl"
+              spacing={6}
+              align={{ base: "center", md: "flex-end" }}
             >
-              Grooming Hewan Jadi Lebih Mudah, Bersih, dan Menyenangkan.
-              Jadwalkan layanan grooming terbaik untuk anabulmu bersama
-              Pawfection!
-            </Text>
-            <Stack direction={"row"} justify="center">
-              <Button
-                bg={"blue.400"}
-                rounded={"full"}
-                color={"white"}
-                _hover={{ bg: "blue.500" }}
-                onClick={() => navigate("/layanan")}
+              <Text
+                color="white"
+                fontWeight={600}
+                lineHeight={1.2}
+                fontSize={useBreakpointValue({ base: "xl", md: "2xl" })}
+                mb={8}
               >
-                Lihat Layanan
-              </Button>
-              <Button
-                bg={"green.500"}
-                rounded={"full"}
-                color={"white"}
-                _hover={{ bg: "green.600" }}
-                onClick={() => navigate("/reservasi")}
-              >
-                Lakukan Reservasi
-              </Button>
+                Dapatkan informasi seputar Universitas Gunadarma secara cepat
+                dan interaktif. Chatbot cerdas kami siap membantu menjawab
+                pertanyaanmu kapan saja!
+              </Text>
+              <Stack direction="row" spacing={4}>
+                <Button
+                  colorPalette={"blue"}
+                  variant={useColorModeValue("solid", "surface")}
+                  rounded="full"
+                  onClick={() => navigate("/layanan")}
+                >
+                  Chat - Informasi
+                </Button>
+                <Button
+                  colorPalette={"purple"}
+                  variant={useColorModeValue("solid", "surface")}
+                  rounded="full"
+                  onClick={() => navigate("/reservasi")}
+                >
+                  Chat - Pendaftaran
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        </VStack>
+          </Flex>
+        </Container>
       </Flex>
     </Box>
   );

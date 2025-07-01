@@ -4,6 +4,7 @@ import {
     getAllNews,
     getNewsById,
     updateNews,
+    toggleNewsStatus,
     deleteNews,
     getPublishedNews,
     getLatestNews,
@@ -28,6 +29,9 @@ router.get("/:id", getNewsById);
 
 // PUT /api/news/:id - Update news by ID
 router.put("/:id", updateNews);
+
+// PUT /api/news/toggle/:id - Toggle isPublished status
+router.put("/toggle/:id", toggleNewsStatus);
 
 // DELETE /api/news/:id - Delete news by ID
 router.delete("/:id", deleteNews);
