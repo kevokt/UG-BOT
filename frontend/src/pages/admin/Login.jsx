@@ -86,9 +86,10 @@ const Login = () => {
                 <VStack gap={"3"}>
                   <Logo />
                   <Text
-                    fontSize={"4xl"}
+                    fontSize={"xl"}
                     textAlign={"center"}
                     fontWeight={"bold"}
+                    color={"purple.500"}
                     fontFamily="'Exo', sans-serif"
                   >
                     Admin Login

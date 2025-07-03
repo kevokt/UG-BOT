@@ -1,7 +1,5 @@
-import { FaChartBar, FaUser } from "react-icons/fa";
+import { FaChartBar, FaUser, FaBug } from "react-icons/fa";
 import { FaNewspaper } from "react-icons/fa6";
-import { GoReport } from "react-icons/go";
-
 
 export const adminNavItems = [
     {
@@ -20,7 +18,7 @@ export const adminNavItems = [
         to: "/admin/report",
         label: "Kelola Laporan",
         name: "report",
-        icon: GoReport,
+        icon: FaBug,
     },
     {
         to: "/admin/registration",

@@ -28,7 +28,7 @@ const Chat = () => {
     <Flex minH="80vh" justify="center" align="center" py={10} px={4} mb={8}>
       <VStack spacing={2} w="100%">
         {boxData.map((item, index) => (
-          <Link to={item.link} key={index} style={{ width: "100%" }}>
+          <Link to={item.link} key={index}>
             <Box
               w={{ base: "90%", md: "550px", lg: "700px" }}
               h="230px"

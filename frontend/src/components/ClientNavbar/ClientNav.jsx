@@ -4,7 +4,7 @@ import { ColorModeButton, useColorModeValue } from "../ui/color-mode";
 import ClientDrawerNav from "./ClientDrawerNav";
 import { clientNavItems } from "./ClientNavItems";
 import Logo from "@/components/misc/Logo";
-import { NavLink } from "react-router-dom"; // ⬅️ import this
+import { NavLink } from "react-router-dom";
 
 const ClientNav = ({ active }) => {
   const fontColor = useColorModeValue("black", "whiteAlpha.900");

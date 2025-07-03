@@ -3,8 +3,6 @@ import { Box, Text, Container } from "@chakra-ui/react";
 import { useColorModeValue } from "@/components/ui/color-mode";
 
 const About = () => {
-  const cardBg = useColorModeValue("white", "blackAlpha.400");
-
   return (
     <Box
       h="auto"
@@ -15,7 +13,7 @@ const About = () => {
       my={{ base: 8, md: 16 }}
       py={8}
     >
-      <Container maxW="6xl">
+      <Container maxW="6xl" px="8">
         <Text
           as="h2"
           fontSize={{ base: "2xl", md: "3xl" }}
@@ -28,8 +26,9 @@ const About = () => {
         <Text
           as="p"
           mb={4}
-          fontSize={{ base: "lg", md: "xl" }}
+          fontSize={{ base: "sm", md: "lg" }}
           textAlign="justify"
+          fontWeight="100"
         >
           <strong>UG-Bot</strong> adalah chatbot berbasis web yang dikembangkan
           untuk memberikan informasi seputar Universitas Gunadarma secara
@@ -42,8 +41,9 @@ const About = () => {
         <Text
           as="p"
           mb={4}
-          fontSize={{ base: "lg", md: "xl" }}
+          fontSize={{ base: "sm", md: "lg" }}
           textAlign="justify"
+          fontWeight="100"
         >
           Proyek ini tidak memiliki afiliasi resmi dengan pihak Universitas
           Gunadarma. Pembuatan UG-Bot bertujuan sebagai bagian dari proyek tugas
@@ -53,8 +53,9 @@ const About = () => {
         <Text
           as="p"
           mb={16}
-          fontSize={{ base: "lg", md: "xl" }}
+          fontSize={{ base: "sm", md: "lg" }}
           textAlign="justify"
+          fontWeight="100"
         >
           UG-Bot dikembangkan menggunakan <strong>Botpress</strong> sebagai
           platform utama chatbot, yang bersifat open-source dan memungkinkan

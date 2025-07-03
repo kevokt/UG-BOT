@@ -108,7 +108,7 @@ const AdminNews = () => {
           </VStack>
         ) : (
           <Box mt={10}>
-            <Table.Root size="sm" striped>
+            <Table.Root size="sm">
               <Table.Header>
                 <Table.Row>
                   <Table.ColumnHeader width="20%">Judul</Table.ColumnHeader>

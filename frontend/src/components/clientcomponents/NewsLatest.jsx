@@ -14,7 +14,6 @@ import axios from "axios";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import NewsDetail from "@/components/clientcomponents/NewsDetail";
 
-// Fungsi untuk hapus HTML
 const stripHtml = (html) => {
   const temp = document.createElement("div");
   temp.innerHTML = html;

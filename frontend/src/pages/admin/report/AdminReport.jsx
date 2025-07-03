@@ -30,6 +30,7 @@ const AdminReport = () => {
   const fetchReports = async () => {
     try {
       const response = await axios.get("/api/report");
+      console.log("Fetched reports:", response.data.reports[0]);
       setReports(response.data.reports);
     } catch (error) {
       console.error("Gagal mengambil data laporan:", error);
@@ -131,7 +132,7 @@ const AdminReport = () => {
           </VStack>
         ) : (
           <Box mt={10}>
-            <Table.Root size="md" striped>
+            <Table.Root size="md">
               <Table.Header>
                 <Table.Row>
                   <Table.ColumnHeader>Email</Table.ColumnHeader>

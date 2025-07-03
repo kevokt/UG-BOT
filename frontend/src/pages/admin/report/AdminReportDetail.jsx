@@ -55,6 +55,9 @@ const AdminReportDetail = ({ item }) => {
                   <strong>Email:</strong> {item.email}
                 </Text>
                 <Text>
+                  <strong>No HP:</strong> {item.nomorTelepon || "-"}
+                </Text>
+                <Text>
                   <strong>Kategori:</strong>{" "}
                   {getKategoriLabel(item.kategoriMasalah)}
                 </Text>

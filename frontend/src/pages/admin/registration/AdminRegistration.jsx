@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import AdminSidebarNav from "@/components/AdminNavbar/AdminSidebarNav";
 import {
   Box,
   HStack,
@@ -123,7 +122,7 @@ const AdminRegistration = () => {
           </VStack>
         ) : (
           <Box mt={10}>
-            <Table.Root size="md" striped>
+            <Table.Root size="md">
               <Table.Header>
                 <Table.Row>
                   <Table.ColumnHeader>Nama</Table.ColumnHeader>

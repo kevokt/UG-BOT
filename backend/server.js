@@ -8,6 +8,8 @@ import authRoutes from './routes/authRoutes.js';
 import botpressRoutes from './routes/botpressRoutes.js';
 import newsRoutes from "./routes/newsRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +27,7 @@ app.use('/api/auth', authRoutes);
 app.use("/api/botpress", botpressRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/report", reportRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 
 // Start server

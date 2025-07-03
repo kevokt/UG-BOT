@@ -1,4 +1,4 @@
-import { Report } from "../models/Report.js";
+import Report from "../models/Report.js";
 
 export const createReport = async (req, res) => {
     try {
@@ -54,9 +54,6 @@ export const toggleReportStatus = async (req, res) => {
     try {
         const { id } = req.params;
         const { status } = req.body;
-
-        console.log("ID:", id);
-        console.log("Status:", status);
 
         if (!["pending", "in_progress", "resolved"].includes(status)) {
             return res.status(400).json({ message: "Status tidak valid" });
