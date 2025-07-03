@@ -22,7 +22,7 @@ import ClientLayout from "./layouts/ClientLayout";
 import AdminNewsCreate from "./pages/admin/news/AdminNewsCreate";
 import AdminNewsEdit from "./pages/admin/news/AdminNewsEdit";
 import ChatRegistration from "./pages/client/ChatRegistration";
-import ChatKnowledge from "./pages/client/ChatKnowledge";
+import ChatInformation from "./pages/client/ChatInformation";
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/report" element={<Report />} />
               <Route path="/chat" element={<Chat />} />
-              <Route path="/chat/knowledge" element={<ChatKnowledge />} />
+              <Route path="/chat/information" element={<ChatInformation />} />
               <Route path="/chat/registration" element={<ChatRegistration />} />
             </Route>
 

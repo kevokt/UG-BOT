@@ -1,11 +1,12 @@
 {
-  "name": "admin_ug-bot",
+  "name": "ug-bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon backend/server.js",
-    "frontend": "cd frontend && npm run dev"
+    "frontend": "cd frontend && npm run dev",
+    "start": "cross-env NODE_ENV=production node backend/server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +14,14 @@
   "description": "",
   "dependencies": {
     "@botpress/client": "^1.15.2",
+    "animate.css": "^4.1.1",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+    "react-animate-on-scroll": "^2.1.9"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"

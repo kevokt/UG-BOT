@@ -56,3 +56,22 @@ em,
 i {
     font-style: italic;
 }
+
+@keyframes fadeInLeftShort {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+        /* ubah ini dari -100% atau -100px jadi lebih dekat */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeInLeftShort {
+    animation-name: fadeInLeftShort;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}

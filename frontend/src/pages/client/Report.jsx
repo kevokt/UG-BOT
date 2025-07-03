@@ -101,7 +101,7 @@ const Report = () => {
             <Box
               as="form"
               onSubmit={handleSubmit(onSubmit)}
-              bg={useColorModeValue("gray.100", "gray.700")}
+              bg={useColorModeValue("gray.100", "blackAlpha.400")}
               p={8}
               rounded="2xl"
               shadow="2xl"

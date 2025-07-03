@@ -66,7 +66,7 @@ const Hero = () => {
                   colorPalette={"blue"}
                   variant={useColorModeValue("solid", "surface")}
                   rounded="full"
-                  onClick={() => navigate("/layanan")}
+                  onClick={() => navigate("/chat/information")}
                 >
                   Chat - Informasi
                 </Button>
@@ -74,7 +74,7 @@ const Hero = () => {
                   colorPalette={"purple"}
                   variant={useColorModeValue("solid", "surface")}
                   rounded="full"
-                  onClick={() => navigate("/reservasi")}
+                  onClick={() => navigate("/chat/registration")}
                 >
                   Chat - Pendaftaran
                 </Button>
