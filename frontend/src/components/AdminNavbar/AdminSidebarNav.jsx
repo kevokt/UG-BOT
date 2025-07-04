@@ -56,6 +56,7 @@ const AdminSidebarNav = ({ active }) => {
                 >
                   {({ isActive }) => (
                     <Button
+                      as="div"
                       w="200px"
                       variant={isActive ? "surface" : "ghost"}
                       colorPalette="purple"

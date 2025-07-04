@@ -6,14 +6,15 @@ import {
     toggleEmailStatus,
     deleteRegistrationById
 } from "../controllers/botpressController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 // GET /api/botpress/registrations
-router.get("/registrations", getRegistrationRows);
-router.get("/registrations/:id", getRegistrationById);
-router.put("/registrations/:id", updateRegistrationById);
-router.put("/registrations/toggle/:id", toggleEmailStatus);
-router.post("/registrations/delete/:id", deleteRegistrationById);
+router.get("/registrations", authMiddleware, getRegistrationRows);
+router.get("/registrations/:id", authMiddleware, getRegistrationById);
+router.put("/registrations/:id", authMiddleware, updateRegistrationById);
+router.put("/registrations/toggle/:id", authMiddleware, toggleEmailStatus);
+router.post("/registrations/delete/:id", authMiddleware, deleteRegistrationById);
 
 export default router;

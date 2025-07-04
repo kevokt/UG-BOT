@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Box,
   HStack,
@@ -13,6 +12,7 @@ import { toaster } from "@/components/ui/toaster";
 import AdminRegistrationDetail from "./AdminRegistrationDetail";
 import { useNavigate } from "react-router-dom";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import axios from "@/utils/axiosAuth";
 
 const AdminRegistration = () => {
   const [data, setData] = useState([]);

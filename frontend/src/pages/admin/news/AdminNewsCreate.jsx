@@ -1,6 +1,4 @@
 import { useForm, Controller } from "react-hook-form";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -17,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import axios from "@/utils/axiosAuth";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 

@@ -28,6 +28,7 @@ const ClientNav = ({ active }) => {
               <NavLink to={to} key={label} style={{ textDecoration: "none" }}>
                 {({ isActive }) => (
                   <Button
+                    as="div"
                     className="nav-button"
                     rounded={"full"}
                     width={"100px"}
@@ -39,7 +40,7 @@ const ClientNav = ({ active }) => {
                       bg: useColorModeValue("purple.300", "purple.800"),
                     }}
                   >
-                    <Icon />
+                    <Icon focusable="false" aria-hidden="true" />
                     <span>{label}</span>
                   </Button>
                 )}

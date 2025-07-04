@@ -23,27 +23,27 @@ export const login = async (req, res) => {
     }
 };
 
-export const register = async (req, res) => {
-    try {
-        const { username, password } = req.body;
+// export const register = async (req, res) => {
+//     try {
+//         const { username, password } = req.body;
 
-        // Check if user already exists
-        const existingUser = await AdminModel.findOne({ username });
-        if (existingUser) {
-            return res.status(400).json("Username already taken");
-        }
+//         // Check if user already exists
+//         const existingUser = await AdminModel.findOne({ username });
+//         if (existingUser) {
+//             return res.status(400).json("Username already taken");
+//         }
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10); // 10 = salt rounds
+//         // Hash password
+//         const hashedPassword = await bcrypt.hash(password, 10); // 10 = salt rounds
 
-        const newUser = await AdminModel.create({
-            username,
-            password: hashedPassword,
-        });
+//         const newUser = await AdminModel.create({
+//             username,
+//             password: hashedPassword,
+//         });
 
-        return res.status(201).json({ message: "Admin registered successfully" });
-    } catch (err) {
-        console.error("Register error:", err);
-        return res.status(500).json("Register error");
-    }
-};
+//         return res.status(201).json({ message: "Admin registered successfully" });
+//     } catch (err) {
+//         console.error("Register error:", err);
+//         return res.status(500).json("Register error");
+//     }
+// };

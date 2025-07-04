@@ -63,6 +63,7 @@ const AdminDrawerNav = () => {
                           >
                             {({ isActive }) => (
                               <Button
+                              as="div"
                                 w={{ base: "full", sm: "300px" }}
                                 mx={{ base: "unset", sm: "auto" }}
                                 gap={2}

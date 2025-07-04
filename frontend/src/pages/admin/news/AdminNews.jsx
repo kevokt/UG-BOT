@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Box,
   HStack,
@@ -12,6 +11,7 @@ import {
 import { toaster } from "@/components/ui/toaster";
 import { useNavigate } from "react-router-dom";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import axios from "@/utils/axiosAuth";
 import AdminNewsDetail from "./AdminNewsDetail";
 
 const AdminNews = () => {

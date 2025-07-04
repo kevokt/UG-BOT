@@ -1,7 +1,4 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Box,
   HStack,
@@ -14,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import axios from "@/utils/axiosAuth";
 import AdminReportDetail from "./AdminReportDetail";
 
 const statusOptions = [

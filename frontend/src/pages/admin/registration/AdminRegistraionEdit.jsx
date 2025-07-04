@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
@@ -17,6 +16,7 @@ import {
 import AdminSidebarNav from "@/components/AdminNavbar/AdminSidebarNav";
 import { toaster } from "@/components/ui/toaster";
 import { useColorModeValue } from "@/components/ui/color-mode";
+import axios from "@/utils/axiosAuth";
 
 const AdminRegistrationEdit = () => {
   const { id } = useParams();

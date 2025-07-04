@@ -57,6 +57,7 @@ const ClientDrawerNav = () => {
                           >
                             {({ isActive }) => (
                               <Button
+                                as="div"
                                 className="nav-button"
                                 rounded="full"
                                 width={{ base: "100%", sm: "300px" }}

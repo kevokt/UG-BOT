@@ -1,12 +1,10 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Box, Text, Icon, Flex, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { FaNewspaper, FaBug, FaUsers } from "react-icons/fa";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { toaster } from "@/components/ui/toaster";
 import { Link } from "react-router-dom";
+import axios from "@/utils/axiosAuth";
 
 const AdminDashboard = () => {
   const [newsCount, setNewsCount] = useState(0);
