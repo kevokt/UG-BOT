@@ -31,9 +31,6 @@ const AdminNewsDetail = ({ item }) => {
                   <strong>Penulis:</strong> {item.author}
                 </p>
                 <p>
-                  <strong>Deskripsi Singkat:</strong> {item.description}
-                </p>
-                <p>
                   <strong>Status:</strong>{" "}
                   {item.isPublished ? "Published" : "Draft"}
                 </p>

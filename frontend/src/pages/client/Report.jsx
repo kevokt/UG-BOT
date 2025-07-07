@@ -97,7 +97,7 @@ const Report = () => {
         </Text>
 
         <Center>
-          <Box w="80%" maxW="800px">
+          <Box w={{ base: "95%", md: "80%" }} maxW="800px">
             <Box
               as="form"
               onSubmit={handleSubmit(onSubmit)}
